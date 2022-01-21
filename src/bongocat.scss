@@ -5,13 +5,13 @@
   --blue: #569cfa;
   --orange: #ffcc81;
   --cyan: #7ed1e2;
+  --croma: rgb(255,0,0);
 }
 
 body {
   height: 100vh;
   width: 100vw;
-  // background: var(--bg);
-  background-color: transparent;
+  background: var(--bg);
   display: flex;
   place-content: center;
   align-items: flex-end;
@@ -29,6 +29,19 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+  }
+}
+
+.laptop-keyboard {
+  transform: rotate(190deg) translateY(-66%);
+  transform-origin: center;
+  svg {
+    height: auto;
+    width: auto;
+    overflow: visible;
+    position: initial;
+    left: initial;
+    top: initial;
   }
 }
 

@@ -16,55 +16,104 @@ import { FC } from "react";
 //   );
 // };
 
-const LargeKey: FC<{ x: number; y: number; fill: boolean }> = ({
+const LargeKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
   x,
   y,
   fill,
+  text,
 }) => {
-  const dot1 = `${x + 40} ${y + 25}`;
-  const dot2 = `${x + 10} ${y + 20}`;
+  const width = 60;
+  const height = 40;
+  const dot1 = `${x + 0} ${y + 0}`;
+  const dot2 = `${x + width} ${y + 0}`;
 
-  const dot3 = `${x + 20} ${y + 0}`;
-  const dot4 = `${x + 50} ${y + 5}`;
+  const dot3 = `${x + width} ${y + height}`;
+  const dot4 = `${x + 0} ${y + height}`;
 
   const points = `${dot1} ${dot2} ${dot3} ${dot4}`;
-  
+
   return (
-    <polygon
-      points={points}
-      style={{
-        fill: fill ? "#569cfa" : undefined,
-      }}
-    />
+    <svg>
+      <polygon
+        points={points}
+        stroke-width="1"
+        style={{
+          fill: fill ? "#569cfa" : undefined,
+        }}
+      />
+      <text x={x + width / 2} y={y + 30} text-anchor="middle" fill="white" fontSize="30">{text}</text>
+    </svg>
+  );
+};
+
+
+const LongKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
+  x,
+  y,
+  fill,
+  text,
+}) => {
+  const width = 60;
+  const height = 30;
+  const dot1 = `${x + 0} ${y + 0}`;
+  const dot2 = `${x + width} ${y + 0}`;
+
+  const dot3 = `${x + width} ${y + height}`;
+  const dot4 = `${x + 0} ${y + height}`;
+
+  const points = `${dot1} ${dot2} ${dot3} ${dot4}`;
+
+  return (
+    <svg>
+      <polygon
+        points={points}
+        stroke-width="1"
+        style={{
+          fill: fill ? "#569cfa" : undefined,
+        }}
+      />
+      <text x={x + width / 2} y={y + 20} text-anchor="middle" fill="white" fontSize="20">{text}</text>
+    </svg>
   );
 };
 
 interface KeyProps {
-  keys: {[key: number]: boolean;}
+  keys: { [key: number]: boolean; }
 }
 
-const GamePad:FC<KeyProps> = ({keys}) => {
+const GamePad: FC<KeyProps> = ({ keys }) => {
   return (
     <g className="laptop-keyboard">
       <>
         {/* 위 */}
-        <LargeKey x={468} y={300} fill={keys[12]} />
+        <LargeKey x={200} y={260} fill={keys[12]} text={"상"} />
         {/* 아래 */}
-        <LargeKey x={480} y={275} fill={keys[13]} />
+        <LargeKey x={200} y={310} fill={keys[13]} text={"하"} />
         {/* 좌  */}
-        <LargeKey x={510} y={292} fill={keys[14]} />
+        <LargeKey x={130} y={310} fill={keys[14]} text={"좌"} />
         {/* 우 */}
-        <LargeKey x={440} y={280} fill={keys[15]} />
+        <LargeKey x={270} y={310} fill={keys[15]} text={"우"} />
       </>
       <>
         {/* 세모 */}
-        <LargeKey x={258} y={255} fill={keys[3]} />
+        <LargeKey x={400} y={260} fill={keys[3]} text={"△"} />
         {/* 네모 */}
-        <LargeKey x={300} y={247} fill={keys[2]} />
+        <LargeKey x={400} y={310} fill={keys[2]} text={"□"} />
         {/* 동그라미 */}
-        <LargeKey x={230} y={235} fill={keys[1]} />
+        <LargeKey x={470} y={260} fill={keys[1]} text={"○"} />
         {/* 엑스 */}
-        <LargeKey x={270} y={230} fill={keys[0]} />
+        <LargeKey x={470} y={310} fill={keys[0]} text={"Ｘ"} />
+      </>
+
+      <>
+        {/* r1 */}
+        <LongKey x={400} y={220} fill={keys[5]} text={"R1"} />
+        {/* r2 */}
+        <LongKey x={470} y={220} fill={keys[7]} text={"R2"} />
+        {/* l */}
+        <LongKey x={160} y={220} fill={keys[4]} text={"L1"} />
+        {/* l */}
+        <LongKey x={230} y={220} fill={keys[6]} text={"L2"} />
       </>
     </g>
   );

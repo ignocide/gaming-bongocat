@@ -102,7 +102,9 @@ function App() {
       pressedkeys.includes('12') ||
       pressedkeys.includes('13') ||
       pressedkeys.includes('14') ||
-      pressedkeys.includes('15')
+      pressedkeys.includes('15') ||
+      pressedkeys.includes('4') ||
+      pressedkeys.includes('6')
     );
   }, [pressedkeys]);
 
@@ -111,30 +113,32 @@ function App() {
       pressedkeys.includes('0') ||
       pressedkeys.includes('1') ||
       pressedkeys.includes('2') ||
-      pressedkeys.includes('3')
+      pressedkeys.includes('3') ||
+      pressedkeys.includes('5') ||
+      pressedkeys.includes('7')
     );
   }, [pressedkeys]);
   console.log(pressedkeys, leftPressed);
   return (
-      <div className="container">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 783.55 354.91">
-          <g id="bongo-cat">
-            <CatHead />
-            <HeadPhoneRight />
-            {/* <MusicRight /> */}
-            <Table />
-            {/* <LabtopBase /> */}
-            {/* <LabtopKeyboard /> */}
-            <Gamepad keys={keys} />
-            <CatPawRight pressed={rightPressed}/>
-            {/* <Terminal /> */}
-            {/* <LabtopCover /> */}
-            <CatPawLeft pressed={leftPressed} />
-            <HeadPhoneLeft />
-            {/* <MusicLeft /> */}
-          </g>
-        </svg>
-      </div>
+    <div className="container">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 783.55 354.91">
+        <g id="bongo-cat">
+          <CatHead />
+          <HeadPhoneRight />
+          {/* <MusicRight /> */}
+          <Table />
+          {/* <LabtopBase /> */}
+          {/* <LabtopKeyboard /> */}
+          <Gamepad keys={keys} />
+          <CatPawRight pressed={rightPressed} />
+          {/* <Terminal /> */}
+          {/* <LabtopCover /> */}
+          <CatPawLeft pressed={leftPressed} />
+          <HeadPhoneLeft />
+          {/* <MusicLeft /> */}
+        </g>
+      </svg>
+    </div>
   );
 }
 
