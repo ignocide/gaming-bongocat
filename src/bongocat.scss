@@ -11,7 +11,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background: var(--bg);
+  background: transparent !important;
   display: flex;
   place-content: center;
   align-items: flex-end;
