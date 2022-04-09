@@ -1,21 +1,5 @@
 import { FC } from "react";
 
-// const Key: FC<{ x: number; y: number; fill: boolean }> = ({ x, y, fill }) => {
-//   const points = `${x + 20} ${y + 15} ${x + 8} ${y + 12} ${x + 15} ${y + 9} ${
-//     x + 29
-//   } ${y + 12} `;
-//   // 13 15 8 12 15 9 29 12
-//   // 424 312 374 301 385 299 437 309
-//   return (
-//     <polygon
-//       points={points}
-//       style={{
-//         fill: fill ? "#569cfa" : undefined,
-//       }}
-//     />
-//   );
-// };
-
 const LargeKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
   x,
   y,

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const microphoneInit = (onChageVolume: any) => {
   if (navigator.mediaDevices) {
@@ -31,15 +31,43 @@ const microphoneInit = (onChageVolume: any) => {
   }
 };
 
+const getRandomValue = () => {
+  return Math.floor(Math.random() * 10) + 5;
+};
+
 const CatHead = () => {
   const [saying, setSaying] = useState(false);
-
+  const [closeEye, setCloseEye] = useState(false);
   // TODO: 초기화 코드 작성 필요, microphoneInit 함수 안에 setInterval 초기화가 필요하다.
   useEffect(() => {
     microphoneInit((volume: number) => {
       setSaying(volume > 0.5);
     });
   }, []);
+
+  const blinkEye = useCallback(() => {
+    setCloseEye(true);
+    setTimeout(() => {
+      setCloseEye(false);
+    }, 300);
+    return () => {
+      setCloseEye(false);
+    };
+  }, [setCloseEye]);
+
+  const blinkEyeInterval = useCallback(() => {
+    const randomValue = getRandomValue();
+    window.setTimeout(() => {
+      blinkEye();
+      blinkEyeInterval();
+    }, randomValue * 1000);
+  }, []);
+
+  useEffect(() => {
+    blinkEyeInterval();
+
+    return () => {};
+  }, [blinkEyeInterval]);
 
   return (
     <g className="head">
@@ -49,6 +77,7 @@ const CatHead = () => {
       ></path>
       {/* 노란색 : 255 202 125 */}
       {/* 발바닥색 : 252,55,207 */}
+      {/* 입 안 */}
       {saying && (
         <path
           d="M408 189, 416 198, 428 193, 422 185, Z"
@@ -56,13 +85,30 @@ const CatHead = () => {
           fill="rgb(252,55,207)"
         ></path>
       )}
-
+      {/* 입 */}
       <path
         d="M396.6,178.6c.4.9,2.7,6.5,8.5,8.4s13.4-1.2,17.2-7.9c-.9,7.5,3.8,14.3,10.4,16a14.4,14.4,0,0,0,15-5.7"
         fill="rgb(24,26,39)"
       ></path>
-      <path d="M474,179.2a6.6,6.6,0,0,0-4.9,3.6,6,6,0,0,0,1.5,7.3,6,6,0,0,0,7.9-1c2.3-2.6,2-7,.2-8s-5.9,1.6-5.7,3.5,1.9,2.8,3.2,2.3,1.1-2.2,1.1-2.3"></path>
-      <path d="M365.4,168.9c0,.3-.8,3.6,1.5,6a5.9,5.9,0,0,0,7.2,1.4,6.1,6.1,0,0,0,2.2-7.7c-1.5-3.1-5.7-4.5-7.3-3.2s-.8,6,1,6.6,3.3-.7,3.3-2.1-1.5-1.8-1.6-1.9"></path>
+      {!closeEye ? (
+        <>
+          {/* 왼쪽 눈 */}
+          <path d="M474,179.2a6.6,6.6,0,0,0-4.9,3.6,6,6,0,0,0,1.5,7.3,6,6,0,0,0,7.9-1c2.3-2.6,2-7,.2-8s-5.9,1.6-5.7,3.5,1.9,2.8,3.2,2.3,1.1-2.2,1.1-2.3"></path>
+          {/* 오른쪽 눈 */}
+          <path d="M365.4,168.9c0,.3-.8,3.6,1.5,6a5.9,5.9,0,0,0,7.2,1.4,6.1,6.1,0,0,0,2.2-7.7c-1.5-3.1-5.7-4.5-7.3-3.2s-.8,6,1,6.6,3.3-.7,3.3-2.1-1.5-1.8-1.6-1.9"></path>
+        </>
+      ) : (
+        <>
+          <path
+            d="M469,184, C469,184, 471,196, 480,187"
+            fill="rgb(24,26,39)"
+          ></path>
+          <path
+            d="M365,170, C365,170, 368,183, 377,173"
+            fill="rgb(24,26,39)"
+          ></path>
+        </>
+      )}
     </g>
   );
 };

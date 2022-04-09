@@ -33,7 +33,8 @@ body {
 }
 
 .laptop-keyboard {
-  transform: rotate(190deg) translateY(-66%);
+  transform: rotate(190deg) translateY(-55%) matrix(1, 0, -0.7, 1, 0, 0)
+    translateX(14.5%) scale(0.8);
   transform-origin: center;
   svg {
     height: auto;
