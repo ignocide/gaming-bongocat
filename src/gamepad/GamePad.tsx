@@ -41,11 +41,18 @@ const LargeKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
           fill: fill ? "#569cfa" : undefined,
         }}
       />
-      <text x={x + width / 2} y={y + 30} text-anchor="middle" fill="white" fontSize="30">{text}</text>
+      <text
+        x={x + width / 2}
+        y={y + 30}
+        text-anchor="middle"
+        fill="white"
+        fontSize="30"
+      >
+        {text}
+      </text>
     </svg>
   );
 };
-
 
 const LongKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
   x,
@@ -72,15 +79,24 @@ const LongKey: FC<{ x: number; y: number; fill: boolean; text: string }> = ({
           fill: fill ? "#569cfa" : undefined,
         }}
       />
-      <text x={x + width / 2} y={y + 20} text-anchor="middle" fill="white" fontSize="20">{text}</text>
+      <text
+        x={x + width / 2}
+        y={y + 20}
+        text-anchor="middle"
+        fill="white"
+        fontSize="20"
+      >
+        {text}
+      </text>
     </svg>
   );
 };
 
 interface KeyProps {
-  keys: { [key: number]: boolean; }
+  keys: { [key: number]: boolean };
 }
 
+// rotate3d(1,1,3,372deg) translateY(-45%)
 const GamePad: FC<KeyProps> = ({ keys }) => {
   return (
     <g className="laptop-keyboard">
